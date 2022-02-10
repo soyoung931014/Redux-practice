@@ -7,7 +7,7 @@ const add = document.getElementById("add")
 const minus = document.getElementById("minus")
 const number = document.querySelector("span")
 
-
+number.innerText = 0
 const countModifier = (count = 0 , action) => {
   console.log(count, action) //*{type: '@@redux/INIT9.t.3.3.c'} // {type: 'hello'}
   if (action.type === 'ADD') {
