@@ -27,10 +27,12 @@ const reducer = (state =[], action) => {
   // console.log(action) // {type: 'ADD_TODO', text: 'hi'}
   switch (action.type) {
     case ADD_TODO:
-      return [...state, { text: action.text ,id: Date.now()}] //**  state.push(action.text)이걸 하지 않을것이다. 새로운 array를 만들것임
+      const newToDoObj = { text: action.text ,id: Date.now()}
+      return [...state, newToDoObj] //**  state.push(action.text)이걸 하지 않을것이다. 새로운 array를 만들것임
       //* 그리고 array는 과거의 state와 새로운 TODO를 갖고 있게될거다.
     case DELETE_TODO:
-      return state.filter(el => el.id !== action.id)  
+      const cleaned = state.filter(toDo => toDo.id !== action.id);
+      return cleaned;
     default:
       return []  
   }
@@ -60,6 +62,7 @@ const dispatchDeleteToDo = (e) => {
 
 const paintToDos = () => {
   const toDos = store.getState()
+  console.log(toDos,"+++++++++")
   ul.innerHTML = ''
   toDos.forEach(toDo => {
     const li = document.createElement('li')
@@ -74,9 +77,6 @@ const paintToDos = () => {
   })
 }
 store.subscribe(paintToDos)
-
-
-
 
 
 
