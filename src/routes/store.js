@@ -13,15 +13,15 @@ import { createStore } from "redux";
 const ADD = "ADD";
 const DELETE = "DELETE";
 
-// * action creator
-export const addToDo = text => {
+// * action creator / 추가하는 기준: text, 삭제하는 기준: id
+const addToDo = text => {
     return {
         type: ADD,  
         text
     };
 };
 
-export const deleteToDo = id => {
+const deleteToDo = id => {
     return {
         type: DELETE, 
         id
@@ -37,9 +37,14 @@ const reducer = (state =[], action) => {
             return state.filter(el => el.id !== action.id);
         default:
             return state;    
-    }
+    } 
 }
 
 const store = createStore(reducer);
+
+export const actionCreators = {
+    addToDo,
+    deleteToDo
+}
 
 export default store
