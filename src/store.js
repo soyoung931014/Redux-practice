@@ -1,7 +1,7 @@
 //*⭐️store와 component를 connect하는 방법(redux state에서 정보가져오기)
-//* connect()는 컴포넌트들을 store에 연결시켜줘. 2개의 argument를 가짐 (state, dispatch 택1)
+//* connect()는 컴포넌트들을 store에 연결시켜줘. 2개의 argument를 가짐 (state, dispatch 택1도 가능)
 //* 즉 Home.js에서  store.dispatch()하기를 원해 or store.getState() 하기를 원해?
-//우리의 경우 둘다 하고싶음(todo 추가하고싶고, 가져오고싶고)
+//우리의 경우 둘다 하고싶음(todo 추가하고싶고, state가져오고싶고)
 
 import { createStore } from "redux";
 // store.subscribe() : 스토어의 변경사항을 알려줌
@@ -29,7 +29,7 @@ const deleteToDo = id => {
 }
 
 
-const reducer = (state =[], action) => {
+const reducer = (state =['hello'], action) => {
     switch (action.type) {
         case ADD:
             return [...state, { text: action.text, id: Date.now()}]

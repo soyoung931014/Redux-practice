@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from "react"
 import { connect } from "react-redux";
-import { actionCreators } from "./store"
+import { actionCreators } from '../store'
+import ToDo from '../component/ToDo'
 
 //* connect는 argument로 state와 dispatch를 가진다.
 //* ● mapStateToProps는 두 종류의 argument와 함께 호출되는 function이다.
@@ -11,16 +12,17 @@ import { actionCreators } from "./store"
 //* ※connect()는 return한 것을 component의 prop에 추가해준다.
 
 function Home({toDos, addToDo}) {
-    console.log(toDos)
+    //console.log(props)
+    
  const [text, setText] = useState("")   
   const onChange = (e) => {
      setText(e.target.value)
  }
  const onSubmit = (e) => {
-     console.log(text)
+    // console.log(text)
      e.preventDefault()
      setText("")
-     addToDo(text)// text를 보냄
+     addToDo(text)// text를 보냄 */
  } 
 
     return (
@@ -31,26 +33,27 @@ function Home({toDos, addToDo}) {
                 <button>클릭</button>
             </form>
             <ul>
-            {JSON.stringify(toDos)}    
+            {/* {JSON.stringify(toDos)}  */} 
+            {toDos.map(toDo => <ToDo key={toDo.id} {...toDo} />)}
             </ul>  //*여기가 우리의 todo가 렌더링되는곳(store로부터 state를 가져올 수 있도록 해야한다)*/
         </div>
     )
     
     
 }    
-function mapStateToProps(state) {
-   // console.log(state, ownProps)
+function mapStateToProps(state,ownProps) {
+    console.log(state, ownProps)
     // state는 from store, ownProps는 from Home
-    /* return {state: state, sexy: 'ha'} */
+    //return {state: state, sexy: 'ha'} 
     return { toDos : state }
     }
 
-function mapDispatchToProps(dispatch) {
+ function mapDispatchToProps(dispatch) {
     console.log(dispatch)
     return {
         addToDo: text => dispatch(actionCreators.addToDo(text))
+     }
     }
-}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home) // mapStateToProps함수에있는것들을 Home에 연결시켜준다.
@@ -61,3 +64,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(Home) // mapStateToP
 
 // store.getState()
 // state를 받아다가 components에 전달해야했다.
+
