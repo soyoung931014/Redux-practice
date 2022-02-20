@@ -1,10 +1,13 @@
 import { combineReducers } from "redux";
 import subscribersReducer from './subscribers/reducer'
 import viewReducer from "./views/reducers";
+import commentsReducer from "./comments/reducers";
 
 const rootReducer = combineReducers ({
     views: viewReducer,
-    subscribers: subscribersReducer
+    subscribers: subscribersReducer,
+    comments: commentsReducer
+    
 })
 
 export default rootReducer
