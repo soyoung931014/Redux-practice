@@ -1,0 +1,9 @@
+.App {
+    text-align:center;
+}
+.items {
+    border-bottom: red 1px solid;
+    background-color: sandybrown;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
